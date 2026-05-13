@@ -1,0 +1,83 @@
+$port = 8000
+$root = "c:\Users\cande\Downloads\generated-website"
+
+$mime = @{
+  ".html" = "text/html; charset=utf-8"
+  ".css"  = "text/css; charset=utf-8"
+  ".js"   = "application/javascript; charset=utf-8"
+  ".json" = "application/json; charset=utf-8"
+  ".png"  = "image/png"
+  ".jpg"  = "image/jpeg"
+  ".jpeg" = "image/jpeg"
+  ".svg"  = "image/svg+xml"
+  ".ico"  = "image/x-icon"
+  ".txt"  = "text/plain; charset=utf-8"
+}
+
+$listener = [System.Net.Sockets.TcpListener]::new([Net.IPAddress]::Loopback, $port)
+$listener.Start()
+
+Write-Error "Serving $root on http://localhost:$port/"
+
+while ($true) {
+  $client = $listener.AcceptTcpClient()
+  try {
+    $stream = $client.GetStream()
+    $reader = [IO.StreamReader]::new($stream, [Text.Encoding]::ASCII, $false, 1024, $true)
+
+    $requestLine = $reader.ReadLine()
+    if (-not $requestLine) { continue }
+
+    $parts = $requestLine.Split(" ")
+    $method = $parts[0]
+    $path = if ($parts.Length -ge 2) { $parts[1] } else { "/" }
+
+    while ($true) {
+      $h = $reader.ReadLine()
+      if ($h -eq $null -or $h -eq "") { break }
+    }
+
+    if ($method -ne "GET" -and $method -ne "HEAD") {
+      $body = [Text.Encoding]::UTF8.GetBytes("Method Not Allowed")
+      $header = "HTTP/1.1 405 Method Not Allowed`r`nContent-Type: text/plain; charset=utf-8`r`nContent-Length: $($body.Length)`r`nConnection: close`r`n`r`n"
+      $hb = [Text.Encoding]::UTF8.GetBytes($header)
+      $stream.Write($hb, 0, $hb.Length)
+      if ($method -ne "HEAD") { $stream.Write($body, 0, $body.Length) }
+      continue
+    }
+
+    $rel = [Uri]::UnescapeDataString($path.TrimStart("/"))
+    if ([string]::IsNullOrWhiteSpace($rel)) { $rel = "index.html" }
+    $full = Join-Path $root $rel
+
+    if (!(Test-Path -LiteralPath $full -PathType Leaf)) {
+      $body = [Text.Encoding]::UTF8.GetBytes("Not Found")
+      $header = "HTTP/1.1 404 Not Found`r`nContent-Type: text/plain; charset=utf-8`r`nContent-Length: $($body.Length)`r`nConnection: close`r`n`r`n"
+      $hb = [Text.Encoding]::UTF8.GetBytes($header)
+      $stream.Write($hb, 0, $hb.Length)
+      if ($method -ne "HEAD") { $stream.Write($body, 0, $body.Length) }
+      continue
+    }
+
+    [byte[]]$body = [IO.File]::ReadAllBytes($full)
+    $ext = [IO.Path]::GetExtension($full).ToLowerInvariant()
+    $ct = $mime[$ext]
+    if (-not $ct) { $ct = "application/octet-stream" }
+
+    $header = "HTTP/1.1 200 OK`r`nContent-Type: $ct`r`nContent-Length: $($body.Length)`r`nConnection: close`r`n`r`n"
+    $hb = [Text.Encoding]::UTF8.GetBytes($header)
+    $stream.Write($hb, 0, $hb.Length)
+    if ($method -ne "HEAD") { $stream.Write($body, 0, $body.Length) }
+  } catch {
+    try {
+      $body = [Text.Encoding]::UTF8.GetBytes("Server Error")
+      $header = "HTTP/1.1 500 Server Error`r`nContent-Type: text/plain; charset=utf-8`r`nContent-Length: $($body.Length)`r`nConnection: close`r`n`r`n"
+      $hb = [Text.Encoding]::UTF8.GetBytes($header)
+      $stream.Write($hb, 0, $hb.Length)
+      $stream.Write($body, 0, $body.Length)
+    } catch {
+    }
+  } finally {
+    try { $client.Close() } catch { }
+  }
+}
