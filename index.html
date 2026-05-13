@@ -1,1 +1,271 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="A fast, responsive landing page template." />
+    <title>Nova — Simple Website</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script defer src="./script.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="#top" aria-label="Nova Home">
+          <span class="brand-mark" aria-hidden="true">N</span>
+          <span class="brand-name">Nova</span>
+        </a>
+
+        <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
+          <span class="nav-toggle-lines" aria-hidden="true"></span>
+        </button>
+
+        <nav id="site-nav" class="site-nav" aria-label="Primary">
+          <a class="nav-link" href="#features">Features</a>
+          <a class="nav-link" href="#work">How it works</a>
+          <a class="nav-link" href="#pricing">Pricing</a>
+          <a class="nav-link" href="#contact">Contact</a>
+          <a class="button button-sm button-primary" href="#contact">Get started</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section id="top" class="hero">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">Launch a clean website in minutes</p>
+            <h1>Generate a modern landing page that looks great on every device.</h1>
+            <p class="lead">
+              This is a lightweight, responsive template with a mobile menu, smooth scrolling, and a ready-to-use contact form.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#contact">Build yours</a>
+              <a class="button button-ghost" href="#features">See features</a>
+            </div>
+            <div class="hero-metrics" role="list" aria-label="Highlights">
+              <div class="metric" role="listitem">
+                <div class="metric-value">0 deps</div>
+                <div class="metric-label">Just HTML/CSS/JS</div>
+              </div>
+              <div class="metric" role="listitem">
+                <div class="metric-value">A11y</div>
+                <div class="metric-label">Keyboard friendly</div>
+              </div>
+              <div class="metric" role="listitem">
+                <div class="metric-value">Fast</div>
+                <div class="metric-label">Optimized CSS</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-card" aria-label="Preview card">
+            <div class="card">
+              <div class="card-top">
+                <div class="dot dot-red" aria-hidden="true"></div>
+                <div class="dot dot-yellow" aria-hidden="true"></div>
+                <div class="dot dot-green" aria-hidden="true"></div>
+              </div>
+              <div class="card-body">
+                <div class="skeleton skeleton-title"></div>
+                <div class="skeleton skeleton-line"></div>
+                <div class="skeleton skeleton-line"></div>
+                <div class="skeleton skeleton-line short"></div>
+                <div class="skeleton skeleton-button"></div>
+                <div class="mini-grid" aria-hidden="true">
+                  <div class="mini"></div>
+                  <div class="mini"></div>
+                  <div class="mini"></div>
+                  <div class="mini"></div>
+                  <div class="mini"></div>
+                  <div class="mini"></div>
+                </div>
+              </div>
+            </div>
+            <p class="hero-note">Tip: replace this copy with your product, book, app, or portfolio.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="features" class="section">
+        <div class="container">
+          <div class="section-head">
+            <h2>Everything you need for a simple website</h2>
+            <p class="muted">Clean components, responsive layout, and small touches that make it feel finished.</p>
+          </div>
+
+          <div class="grid-3">
+            <article class="feature">
+              <h3>Responsive by default</h3>
+              <p>Scales from mobile to desktop with a fluid grid and sensible type sizes.</p>
+            </article>
+            <article class="feature">
+              <h3>Accessible navigation</h3>
+              <p>Keyboard-friendly menu toggle with proper ARIA attributes and focus styles.</p>
+            </article>
+            <article class="feature">
+              <h3>Ready contact form</h3>
+              <p>Includes basic validation and a safe front-end submission placeholder.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="work" class="section section-alt">
+        <div class="container">
+          <div class="section-head">
+            <h2>How it works</h2>
+            <p class="muted">Edit three files to make it yours: HTML for content, CSS for theme, JS for behavior.</p>
+          </div>
+
+          <ol class="steps">
+            <li class="step">
+              <div class="step-num">1</div>
+              <div class="step-body">
+                <h3>Update the content</h3>
+                <p>Swap the headline, sections, and links with your own information.</p>
+              </div>
+            </li>
+            <li class="step">
+              <div class="step-num">2</div>
+              <div class="step-body">
+                <h3>Choose colors & type</h3>
+                <p>Adjust the CSS variables to match your brand in seconds.</p>
+              </div>
+            </li>
+            <li class="step">
+              <div class="step-num">3</div>
+              <div class="step-body">
+                <h3>Connect the form</h3>
+                <p>Point the form to your backend, email service, or serverless function.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section id="pricing" class="section">
+        <div class="container">
+          <div class="section-head">
+            <h2>Simple pricing</h2>
+            <p class="muted">Use these as placeholders or adapt them to your offerings.</p>
+          </div>
+
+          <div class="grid-3 pricing">
+            <article class="price-card">
+              <h3>Starter</h3>
+              <p class="price"><span class="price-currency">$</span>0</p>
+              <p class="muted">For a quick personal landing page.</p>
+              <ul class="list">
+                <li>Single-page layout</li>
+                <li>Responsive design</li>
+                <li>Basic contact form</li>
+              </ul>
+              <a class="button button-block button-ghost" href="#contact">Choose Starter</a>
+            </article>
+
+            <article class="price-card featured" aria-label="Most popular plan">
+              <div class="badge">Most popular</div>
+              <h3>Pro</h3>
+              <p class="price"><span class="price-currency">$</span>12</p>
+              <p class="muted">For creators launching a product.</p>
+              <ul class="list">
+                <li>Sections + CTA blocks</li>
+                <li>Polished styling</li>
+                <li>Form ready to connect</li>
+              </ul>
+              <a class="button button-block button-primary" href="#contact">Choose Pro</a>
+            </article>
+
+            <article class="price-card">
+              <h3>Team</h3>
+              <p class="price"><span class="price-currency">$</span>29</p>
+              <p class="muted">For small teams and startups.</p>
+              <ul class="list">
+                <li>Custom sections</li>
+                <li>Brand theming</li>
+                <li>Extended integrations</li>
+              </ul>
+              <a class="button button-block button-ghost" href="#contact">Choose Team</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="section section-alt">
+        <div class="container">
+          <div class="section-head">
+            <h2>Contact</h2>
+            <p class="muted">This form is front-end only. Hook it up to an API endpoint to receive messages.</p>
+          </div>
+
+          <div class="contact-grid">
+            <div class="contact-card">
+              <h3>Send a message</h3>
+              <form id="contact-form" class="form" novalidate>
+                <label class="field">
+                  <span class="label">Name</span>
+                  <input name="name" type="text" autocomplete="name" required minlength="2" placeholder="Your name" />
+                </label>
+                <label class="field">
+                  <span class="label">Email</span>
+                  <input name="email" type="email" autocomplete="email" required placeholder="you@example.com" />
+                </label>
+                <label class="field">
+                  <span class="label">Message</span>
+                  <textarea name="message" rows="5" required minlength="10" placeholder="What are you building?"></textarea>
+                </label>
+                <button class="button button-primary" type="submit">Send</button>
+                <p id="form-status" class="form-status" aria-live="polite"></p>
+              </form>
+            </div>
+
+            <aside class="contact-aside" aria-label="Contact details">
+              <div class="aside-box">
+                <h3>Details</h3>
+                <dl class="dl">
+                  <div class="dl-row">
+                    <dt>Email</dt>
+                    <dd><a href="mailto:hello@example.com">hello@example.com</a></dd>
+                  </div>
+                  <div class="dl-row">
+                    <dt>Hours</dt>
+                    <dd>Mon–Fri, 9–5</dd>
+                  </div>
+                  <div class="dl-row">
+                    <dt>Location</dt>
+                    <dd>Remote</dd>
+                  </div>
+                </dl>
+              </div>
+              <div class="aside-box">
+                <h3>Links</h3>
+                <div class="link-grid">
+                  <a class="pill" href="#features">Features</a>
+                  <a class="pill" href="#pricing">Pricing</a>
+                  <a class="pill" href="#top">Top</a>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p class="muted">© <span id="year"></span> Nova. Built as a starter template.</p>
+        <div class="footer-links" aria-label="Footer links">
+          <a href="#top">Back to top</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
 
